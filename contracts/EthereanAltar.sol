@@ -35,11 +35,11 @@ contract Ethereans is ERC721Token, Pausable {
     }
 
     // fallback function can be used to buy tokens
-    function () external payable {
+    function () external whenNotPaused payable {
         buyTokens(msg.sender);
     }
 
-    function buyTokens(address beneficiary) public payable {
+    function buyTokens(address beneficiary) public whenNotPaused payable {
         require(beneficiary != address(0));
         require(validPurchase());
 
@@ -61,7 +61,7 @@ contract Ethereans is ERC721Token, Pausable {
         super._mint(_to, _tokenId);
     }    
 
-    function burn(uint256 _tokenId) public {
+    function burn(uint256 _tokenId) public whenNotPaused {
         super._burn(_tokenId);
     }
 
