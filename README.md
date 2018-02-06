@@ -33,7 +33,7 @@ run webapp (at project root):
     - cd to this root/node_modules/node-wit
     - npm install readline
 
- #Resources:
+ # Resources:
  - started with
  https://goo.gl/4r3c2P
 
@@ -55,7 +55,7 @@ http://remix.ethereum.org
 http://www.masonforest.com/blockchain/ethereum/2017/11/13/how-to-deploy-an-erc20-token-in-20-minutes.html
 
 
-#TODO:
+# TODO:
 - connect UI event handlers to EthereanFactory functions
 - ERC721/827 for payloads?
 - Altar object as crowdsale contract? see open-zeppelin
