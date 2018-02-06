@@ -55,13 +55,9 @@
     "dotenv": "^2.0.0",
     "express": "^4.16.2",
     "foreman": "^2.0.0",
-    "google-maps-react": "^1.1.2",
     "marked": "^0.3.7",
     "material-ui": "^0.19.4",
     "material-ui-datatables": "^0.18.2",
-    "mongodb": "^2.2.33",
-    "mongoose": "^4.13.5",
-    "node-wit": "^4.3.0",
     "nodemon": "^1.12.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.5",
@@ -70,7 +66,6 @@
     "react-toolbox": "^2.0.0-beta.12",
     "react-typeform": "^0.1.1",
     "styled-components": "^2.2.3",
-    "uport-connect": "^0.7.0",
     "zeppelin-solidity": "^1.6.0"
   },
   "scripts": {
