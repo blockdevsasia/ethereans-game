@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Etherean from '../build/contracts/Etherean.json'
+import EthereanFactory from '../build/contracts/EthereanFactory.json'
 import getWeb3 from './utils/getWeb3'
 import Header from './Header'
 import Main from './Main'
@@ -23,6 +23,7 @@ class App extends Component {
   componentWillMount() {
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
+    console.log("componentWillMount");
 
     getWeb3
     .then(results => {
@@ -46,12 +47,14 @@ class App extends Component {
      * state management library, but for convenience I've placed them here.
      */
 
-    const contract = require('truffle-contract')
-    const etherean = contract(Etherean)
-    etherean.setProvider(this.state.web3.currentProvider)
+     console.log("instantiateContract");
 
-    // Declaring this for later so we can chain functions on EthereanAltar.
-    var ethereanAltarInstance
+    const contract = require('truffle-contract')
+    const ethereanfactory = contract(EthereanFactory)
+    ethereanfactory.setProvider(this.state.web3.currentProvider)
+
+    // Declaring this for later so we can chain functions on EthereanFactory.
+    var ethereanFactoryInstance
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
@@ -59,11 +62,11 @@ class App extends Component {
           console.log(error);
       }
 
-      etherean.deployed().then((instance) => {
-        console.log("ethereanaltar smart contract deployed")
-        ethereanAltarInstance = instance
+      ethereanfactory.deployed().then((instance) => {
+        console.log("ethereanfactory smart contract deployed")
+        ethereanFactoryInstance = instance
 
-        alert("ethereanaltar smart contract deployed")
+        alert("ethereanfactory smart contract deployed")
 
         //do some sort of test here?
 

@@ -8,6 +8,9 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import { Card, CardText, CardActions, CardTitle, CardHeader, CardMedia } from 'material-ui/Card';
 
+//get reference to ethereanfactory obj from App.js
+//set click event on image and set action to ethereanfactory._createEtherean
+//watch for EtherianCreated Event and print Etherian dna, name in popup
 const AltarPage = () => (
     <center>
         <Grid>
