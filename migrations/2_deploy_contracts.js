@@ -1,5 +1,5 @@
-var EthereanFactory = artifacts.require("./EthereanFactory.sol");
+var EthereanCore = artifacts.require("./EthereanCore.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(EthereanFactory);
+  deployer.deploy(EthereanCore);
 };
