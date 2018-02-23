@@ -3,6 +3,7 @@ App = {
   contracts: {},
 
   init: function() {
+
     return App.initWeb3();
   },
 
@@ -21,27 +22,31 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('Etherean.json', function(data) {
+    $.getJSON('EthereanCore.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var TutorialTokenArtifact = data;
+      var EthereanTokenArtifact = data;
       App.contracts.EthereanToken = TruffleContract(EthereanTokenArtifact);
 
       // Set the provider for our contract.
       App.contracts.EthereanToken.setProvider(App.web3Provider);
+      console.log('got json for contract');
 
     });
 
     return App.bindEvents();
   },
 
-  ourStuff: function() {
+  makeOffering: function() {
     App.contracts.EthereanToken.deployed().then(function(instance) {
+      console.log('lets make an offering')
       ethereanTokenInstance = instance;
 
+      var defaultAccount = web3.eth.defaultAccount;
 
-      return ethereanTokenInstance.sendTransaction(toAddress, amount, {from: account});
+      return ethereanTokenInstance.makeOffering(defaultAccount);
+      // return ethereanTokenInstance.sendTransaction(toAddress, amount, {from: account});
     }).then(function(result) {
-      alert('Transfer Successful!');
+      alert('Offering Successful! An Etherean is interested and will answer back to address ' + defaultAccount);
       return;
     }).catch(function(err) {
       console.log(err.message);
@@ -49,7 +54,7 @@ App = {
   },
 
   bindEvents: function() {
-    $(document).on('click', '#transferButton', App.ourStuff);
+    $(document).on('click', '#transferButton', App.makeOffering);
   },
 
 };
