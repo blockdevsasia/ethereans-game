@@ -42,6 +42,7 @@ contract EthereanCore is ERC721Token, Pausable {
 
     function EthereanCore () public {
         contractOwner = msg.sender;
+        
     }
 
     function () external payable {
