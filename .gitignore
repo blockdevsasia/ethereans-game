@@ -65,4 +65,4 @@ typings/
 .idea
 
 build/
-old/
+.DS_Store
