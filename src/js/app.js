@@ -3,6 +3,7 @@ App = {
   contracts: {},
 
   init: function() {
+
     return App.initWeb3();
   },
 
@@ -13,7 +14,7 @@ App = {
       web3 = new Web3(web3.currentProvider);
     } else {
       // set the provider you want from Web3.providers
-      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:9545');
+      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');
       web3 = new Web3(App.web3Provider);
     }
 
@@ -21,80 +22,40 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('TutorialToken.json', function(data) {
+    $.getJSON('EthereanCore.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var TutorialTokenArtifact = data;
-      App.contracts.TutorialToken = TruffleContract(TutorialTokenArtifact);
+      var EthereanTokenArtifact = data;
+      App.contracts.EthereanToken = TruffleContract(EthereanTokenArtifact);
 
       // Set the provider for our contract.
-      App.contracts.TutorialToken.setProvider(App.web3Provider);
+      App.contracts.EthereanToken.setProvider(App.web3Provider);
+      console.log('got json for contract');
 
-      // Use our contract to retieve and mark the adopted pets.
-      return App.getBalances();
     });
 
     return App.bindEvents();
   },
 
+  makeOffering: function() {
+    App.contracts.EthereanToken.deployed().then(function(instance) {
+      console.log('lets make an offering')
+      ethereanTokenInstance = instance;
+
+      var defaultAccount = web3.eth.defaultAccount;
+
+      return ethereanTokenInstance.makeOffering(defaultAccount);
+      // return ethereanTokenInstance.sendTransaction(toAddress, amount, {from: account});
+    }).then(function(result) {
+      alert('Offering Successful! An Etherean is interested and will answer back to address ' + defaultAccount);
+      return;
+    }).catch(function(err) {
+      console.log(err.message);
+    });
+  },
+
   bindEvents: function() {
-    $(document).on('click', '#transferButton', App.handleTransfer);
+    $(document).on('click', '#transferButton', App.makeOffering);
   },
-
-  handleTransfer: function(event) {
-    event.preventDefault();
-
-    var amount = parseInt($('#TTTransferAmount').val());
-    var toAddress = $('#TTTransferAddress').val();
-
-    console.log('Transfer ' + amount + ' TT to ' + toAddress);
-
-    var tutorialTokenInstance;
-
-    web3.eth.getAccounts(function(error, accounts) {
-      if (error) {
-        console.log(error);
-      }
-
-      var account = accounts[0];
-
-      App.contracts.TutorialToken.deployed().then(function(instance) {
-        tutorialTokenInstance = instance;
-
-        return tutorialTokenInstance.transfer(toAddress, amount, {from: account});
-      }).then(function(result) {
-        alert('Transfer Successful!');
-        return App.getBalances();
-      }).catch(function(err) {
-        console.log(err.message);
-      });
-    });
-  },
-
-  getBalances: function(adopters, account) {
-    console.log('Getting balances...');
-
-    var tutorialTokenInstance;
-
-    web3.eth.getAccounts(function(error, accounts) {
-      if (error) {
-        console.log(error);
-      }
-
-      var account = accounts[0];
-
-      App.contracts.TutorialToken.deployed().then(function(instance) {
-        tutorialTokenInstance = instance;
-
-        return tutorialTokenInstance.balanceOf(account);
-      }).then(function(result) {
-        balance = result.c[0];
-
-        $('#TTBalance').text(balance);
-      }).catch(function(err) {
-        console.log(err.message);
-      });
-    });
-  }
 
 };
 
