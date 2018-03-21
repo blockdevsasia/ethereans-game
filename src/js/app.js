@@ -46,7 +46,7 @@ App = {
       return ethereanTokenInstance.makeOffering(defaultAccount);
       // return ethereanTokenInstance.sendTransaction(toAddress, amount, {from: account});
     }).then(function(result) {
-      alert('Offering Successful! An Etherean is interested and will answer back to address ' + defaultAccount);
+      console.log('Offering Successful! An Etherean is interested and will answer back to address ', result);
       return;
     }).catch(function(err) {
       console.log(err.message);
