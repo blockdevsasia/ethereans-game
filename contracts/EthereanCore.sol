@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.18;
 
 import "../node_modules/zeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "../node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol";
@@ -40,7 +40,7 @@ contract EthereanCore is ERC721Token, Pausable {
     //  Used internally inside balanceOf() to resolve ownership count.
     mapping (address => uint256) ownershipTokenCount;
 
-    function EthereanCore () public {
+    constructor () public {
         contractOwner = msg.sender;
         
     }

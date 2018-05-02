@@ -1,9 +1,10 @@
+import { Drizzle, generateStore } from 'drizzle';
+
 App = {
   web3Provider: null,
   contracts: {},
 
   init: function() {
-
     return App.initWeb3();
   },
 
@@ -40,11 +41,10 @@ App = {
     App.contracts.EthereanToken.deployed().then(function(instance) {
       console.log('lets make an offering')
       ethereanTokenInstance = instance;
-
+      
       var defaultAccount = web3.eth.defaultAccount;
-
       return ethereanTokenInstance.makeOffering(defaultAccount);
-      // return ethereanTokenInstance.sendTransaction(toAddress, amount, {from: account});
+
     }).then(function(result) {
       console.log('Offering Successful! An Etherean is interested and will answer back to address ', result);
       return;
