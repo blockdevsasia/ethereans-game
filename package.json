@@ -1,5 +1,5 @@
 {
-  "name": "tutorialtoken",
+  "name": "ethereans-game",
   "version": "1.0.0",
   "description": "",
   "main": "truffle.js",
@@ -16,7 +16,8 @@
     "lite-server": "^2.3.0"
   },
   "dependencies": {
-    "bootstrap-slider": "^10.0.0",
-    "zeppelin-solidity": "1.6.0"
+    "bootstrap-slider": "^10.0.2",
+    "drizzle": "^1.1.5",
+    "zeppelin-solidity": "^1.9.0"
   }
 }
